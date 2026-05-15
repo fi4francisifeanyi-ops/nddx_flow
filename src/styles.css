@@ -1,0 +1,185 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-royal: var(--royal);
+  --color-emerald: var(--emerald);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Brand */
+  --gold: oklch(0.78 0.14 82);          /* #D4A017-ish */
+  --royal: oklch(0.5 0.2 264);          /* #1149B5-ish */
+  --emerald: oklch(0.68 0.16 158);      /* #00A86B-ish */
+  --navy: oklch(0.18 0.05 260);
+  --navy-deep: oklch(0.11 0.04 260);
+
+  --background: oklch(0.09 0.03 260);
+  --foreground: oklch(0.97 0.01 250);
+  --card: oklch(0.14 0.04 260);
+  --card-foreground: oklch(0.97 0.01 250);
+  --popover: oklch(0.14 0.04 260);
+  --popover-foreground: oklch(0.97 0.01 250);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.12 0.04 260);
+  --secondary: oklch(0.22 0.05 260);
+  --secondary-foreground: oklch(0.97 0.01 250);
+  --muted: oklch(0.18 0.04 260);
+  --muted-foreground: oklch(0.7 0.03 250);
+  --accent: var(--royal);
+  --accent-foreground: oklch(0.97 0.01 250);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: var(--gold);
+
+  /* Gradients & effects */
+  --gradient-hero: radial-gradient(ellipse at top, oklch(0.5 0.2 264 / 0.28), transparent 60%),
+                    radial-gradient(ellipse at bottom right, oklch(0.68 0.16 158 / 0.12), transparent 55%),
+                    linear-gradient(180deg, var(--navy-deep), var(--background));
+  --gradient-gold: linear-gradient(135deg, oklch(0.85 0.14 88), oklch(0.7 0.15 70));
+  --gradient-aurora: linear-gradient(120deg, var(--royal), var(--emerald), var(--gold));
+  --gradient-text-gold: linear-gradient(135deg, oklch(0.92 0.13 90), oklch(0.7 0.15 70));
+
+  --glow-gold: 0 0 40px oklch(0.78 0.14 82 / 0.35), 0 0 80px oklch(0.78 0.14 82 / 0.15);
+  --glow-royal: 0 0 40px oklch(0.5 0.2 264 / 0.45);
+  --glow-emerald: 0 0 30px oklch(0.68 0.16 158 / 0.4);
+  --shadow-luxury: 0 30px 80px -20px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.05);
+
+  --glass-bg: oklch(1 0 0 / 0.04);
+  --glass-border: oklch(1 0 0 / 0.1);
+
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  }
+  .glass-strong {
+    background: oklch(0.14 0.04 260 / 0.7);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(24px) saturate(160%);
+  }
+  .text-gradient-gold {
+    background: var(--gradient-text-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-aurora {
+    background: var(--gradient-aurora);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-hero { background: var(--gradient-hero); }
+  .bg-gold-gradient { background: var(--gradient-gold); }
+  .glow-gold { box-shadow: var(--glow-gold); }
+  .glow-royal { box-shadow: var(--glow-royal); }
+  .glow-emerald { box-shadow: var(--glow-emerald); }
+  .shadow-luxury { box-shadow: var(--shadow-luxury); }
+  .grid-bg {
+    background-image:
+      linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .ring-glow { box-shadow: 0 0 0 1px oklch(1 0 0 / 0.08), 0 0 30px oklch(0.78 0.14 82 / 0.2); }
+  .animate-float { animation: float 8s ease-in-out infinite; }
+  .animate-float-subtle { animation: floatSubtle 12s ease-in-out infinite; }
+  .animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+  .animate-shimmer { animation: shimmer 8s linear infinite; background-size: 200% 100%; }
+
+  /* Corporate layout rhythm */
+  .section-y {
+    padding-block: clamp(4.5rem, 8vw, 7.5rem);
+  }
+  .section-y-tight {
+    padding-block: clamp(3.5rem, 6vw, 5.5rem);
+  }
+  .surface-panel {
+    background: oklch(0.1 0.035 260 / 0.55);
+    border: 1px solid oklch(1 0 0 / 0.08);
+    box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.04);
+  }
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-12px) }
+}
+@keyframes floatSubtle {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-5px) }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 30px oklch(0.78 0.14 82 / 0.3); }
+  50% { box-shadow: 0 0 60px oklch(0.78 0.14 82 / 0.55); }
+}
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
